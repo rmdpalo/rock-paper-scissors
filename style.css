@@ -1,0 +1,55 @@
+:root {
+  --button-corners: 15px;
+  --section-corners: 5px;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  display: flex;
+  width: 90vw;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+section {
+  margin: 10px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: var(--section-corners);
+}
+/* #player-section {
+  border: 1px solid black;
+  padding: 10px;
+} */
+
+.player-choices {
+  display: flex;
+  flex-direction: row;
+}
+
+.player-choices div {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 2px 0.5rem;
+  border-radius: var(--button-corners);
+}
+/* 
+#computer-section {
+  border: 1px solid black;
+  padding: 10px;
+} */
+
+.computer-choices {
+  display: flex;
+  flex-direction: row;
+}
+
+.computer-choices div {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 2px 0.5rem;
+  border-radius: var(--button-corners);
+}
