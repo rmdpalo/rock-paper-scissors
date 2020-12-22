@@ -1,13 +1,11 @@
 const options = ["Rock", "Paper", "Scissors"]
 
-
-function computerPlay(){
-    let cpuChoice = Math.floor(Math.random() * 3)
-    return options[cpuChoice]
-}
-
 let playerChoice;
-let computerChoice = computerPlay();
+let computerChoice = options[randomizedChoice()];
+
+function randomizedChoice(){
+    return Math.floor(Math.random() * options.length)
+}
 
 function playRound(playerChoice, computerChoice){
     while(true) {
@@ -30,26 +28,36 @@ function playRound(playerChoice, computerChoice){
     }
 }
 
-function game(){
-    let playerScore = 0;
-    let computerScore = 0;
-    let gameEnded = false;
+let gameEnded = false;
+let playerScore = 0;
+let computerScore = 0;
 
-    while(gameEnded === false){
-        console.log(`Your score: ${playerScore}. Computer's Score: ${computerScore}.`)
-        console.log(playRound(playerChoice, computerChoice));
-        if (playerScore === 5){
-            gameEnded = true;
-            return "Player wins the game!"
-        } else if (computerScore === 5) {
-            gameEnded = true;
-            return "Computer wins the game!"
-        }
-    }
-    let reset = prompt("Play again? y/n").toLowerCase();
+function resetGame (winner){
+    let reset = prompt("Play again? 'y' to restart.").toLowerCase();
     if (reset === "y"){
         playerScore = 0
         computerScore = 0
+        gameEnded = false
+        game();
+    }
+    console.log(`Your score: ${playerScore}. Computer's Score: ${computerScore}.`)
+    console.log(`${winner} won the game!`)
+}
+
+function game(){
+    while(gameEnded === false){
+        console.log(`Your score: ${playerScore}. Computer's Score: ${computerScore}.`)
+        computerChoice = options[randomizedChoice()];
+        console.log(playRound(playerChoice, computerChoice));
+        if (playerScore === 5){
+            gameEnded = true;
+            resetGame("You");
+            return 
+        } else if (computerScore === 5) {
+            gameEnded = true;
+            resetGame("The computer");
+            return 
+        }
     }
 }
 
