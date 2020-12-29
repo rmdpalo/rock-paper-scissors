@@ -13,6 +13,8 @@ main {
   height: 90vh;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  margin: auto;
 }
 section {
   margin: 10px;
@@ -20,10 +22,6 @@ section {
   padding: 10px;
   border-radius: var(--section-corners);
 }
-/* #player-section {
-  border: 1px solid black;
-  padding: 10px;
-} */
 
 .player-choices {
   display: flex;
@@ -36,20 +34,10 @@ section {
   padding: 2px 0.5rem;
   border-radius: var(--button-corners);
 }
-/* 
-#computer-section {
-  border: 1px solid black;
-  padding: 10px;
-} */
 
-.computer-choices {
+#scoreboard {
   display: flex;
   flex-direction: row;
-}
-
-.computer-choices div {
-  border: 1px solid black;
-  margin: 5px;
-  padding: 2px 0.5rem;
-  border-radius: var(--button-corners);
+  justify-content: space-between;
+  padding: 5px;
 }
