@@ -1,11 +1,10 @@
 const options = ["Rock", "Paper", "Scissors"];
-let computerChoice = options[randomizedChoice()];
+let computerChoice;
+let playerChoice;
 
 //declare variables needed
-const buttons = document.querySelectorAll('button');
-const playerScoreboard = document.getElementById('#player-score');
-const cpuScoreboard = document.getElementById('#cpu-score');
-const results = document.getElementById('#results');
+let buttons = document.querySelectorAll('button');
+const results = document.querySelector('#results');
 
 let playerScore = 0;
 let computerScore = 0;
@@ -16,12 +15,27 @@ buttons.forEach((button) => {
         let playerChoice = button.id;
         let computerChoice = options[randomizedChoice()];
         console.log(playRound(playerChoice, computerChoice));
+
+        if (playerScore === 5 || computerScore === 5) {
+            announceWinner();
+        }
     });
     
 })
 
+function announceWinner() {
+    playerScore > computerScore ? (results.textContent = "You won the game!") : (results.textContent = "You lost the game :(");
+}
 
-let playerChoice;
+function keepPlayerScore(){
+    let playerScoreboard = document.querySelector('#player-score');
+    playerScoreboard.textContent = playerScore;
+}
+
+function keepCpuScore(){
+    let cpuScoreboard = document.querySelector('#cpu-score');
+    cpuScoreboard.textContent = computerScore;
+}
 
 function randomizedChoice(){
     return Math.floor(Math.random() * options.length)
@@ -31,19 +45,23 @@ function playRound(playerChoice, computerChoice){
     computerChoice = computerChoice.toLowerCase();
 
     if(playerChoice === computerChoice){ //draw
-        return "Draw."
+        results.textContent = "Draw."
     } else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")){ //win conditions
         playerScore++
-        return `You win, ${playerChoice} beats ${computerChoice}.`
+        keepPlayerScore();
+        results.textContent = `You win, ${playerChoice} beats ${computerChoice}.`
     } else { //if not win conditions, it's lose.
         computerScore++
-        return `You lose, ${computerChoice} beats ${playerChoice}.`
+        keepCpuScore();
+        results.textContent = `You lose, ${computerChoice} beats ${playerChoice}.`
     }
 }
 
-playerScoreboard.textContent = playerScore;
-cpuScoreboard.textContent = computerScore;
-let gameEnded = false;
+
+
+
+
+
 
 // function resetGame (winner){
 //     let reset = prompt("Play again? 'y' to restart.").toLowerCase();
