@@ -3,8 +3,12 @@ let computerChoice;
 let playerChoice;
 
 //declare variables needed
-let buttons = document.querySelectorAll('button');
+let buttons = document.querySelectorAll('button.player-button');
 const results = document.querySelector('#results');
+let cpuScoreboard = document.querySelector('#cpu-score');
+let playerScoreboard = document.querySelector('#player-score');
+const restartButton = document.querySelector('#restart');
+
 
 let playerScore = 0;
 let computerScore = 0;
@@ -18,22 +22,27 @@ buttons.forEach((button) => {
 
         if (playerScore === 5 || computerScore === 5) {
             announceWinner();
+            buttons.forEach((button) => {
+                button.disabled = true;
+            })
         }
     });
     
 })
+
+restartButton.addEventListener('click', (e) => {
+    resetGame();
+});
 
 function announceWinner() {
     playerScore > computerScore ? (results.textContent = "You won the game!") : (results.textContent = "You lost the game :(");
 }
 
 function keepPlayerScore(){
-    let playerScoreboard = document.querySelector('#player-score');
     playerScoreboard.textContent = playerScore;
 }
 
 function keepCpuScore(){
-    let cpuScoreboard = document.querySelector('#cpu-score');
     cpuScoreboard.textContent = computerScore;
 }
 
@@ -57,39 +66,12 @@ function playRound(playerChoice, computerChoice){
     }
 }
 
-
-
-
-
-
-
-// function resetGame (winner){
-//     let reset = prompt("Play again? 'y' to restart.").toLowerCase();
-//     if (reset === "y"){
-//         playerScore = 0
-//         computerScore = 0
-//         gameEnded = false
-//         game();
-//     }
-//     console.log(`Your score: ${playerScore}. Computer's Score: ${computerScore}.`)
-//     console.log(`${winner} won the game!`)
-// }
-
-// function game(){
-//     while(gameEnded === false){
-//         console.log(`Your score: ${playerScore}. Computer's Score: ${computerScore}.`)
-//         computerChoice = options[randomizedChoice()];
-//         console.log(playRound(playerChoice, computerChoice));
-//         if (playerScore === 5){
-//             // gameEnded = true;
-//             resetGame("You");
-//             return 
-//         } else if (computerScore === 5) {
-//             // gameEnded = true;
-//             resetGame("The computer");
-//             return 
-//         }
-//     }
-// }
-
-// console.log(game());
+function resetGame(){
+    playerScore = 0
+    computerScore = 0
+    cpuScoreboard.textContent = computerScore;
+    playerScoreboard.textContent = playerScore;
+    buttons.forEach((button) => {
+        button.disabled = false;
+    })
+}

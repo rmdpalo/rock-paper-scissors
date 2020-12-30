@@ -10,11 +10,19 @@
     
     <main>
         <h1>Rock Paper Scissors</h1>
+        <h5>
+            <ul>
+                <li>Play the game by clicking a button below</li>
+                <li>Once you click the CPU will randomly choose an option as well.</li>
+                <li>Results are shown on the box below.</li>
+                <li>First to 5 wins.</li>
+            </ul>
+        </h5>
         <section id="player-section">
             <div class="player-choices">
-                <button id="rock">Rock</button>
-                <button id="paper">Paper</button>
-                <button id="scissors">Scissors</button>
+                <button class="player-button" id="rock">Rock</button>
+                <button class="player-button" id="paper">Paper</button>
+                <button class="player-button" id="scissors">Scissors</button>
             </div>
             <div id="scoreboard">
                 <p>You: <span id="player-score">0</span></p>
@@ -24,6 +32,7 @@
         <section id="results-box">
             <h3 id="results">Play by picking a choice above.</h3>
         </section>
+        <button id="restart">Restart</button>
     </main>
 
 <script src="app.js"></script>
