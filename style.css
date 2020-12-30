@@ -53,6 +53,7 @@ h1 {
 }
 
 h5 {
+  display: flex;
   margin: 0;
   justify-content: center;
   align-items: center;
