@@ -7,36 +7,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Rock Paper Scissors</h1>
-    <h3>Open the console.</h3>
-    <!-- <main>
+    
+    <main>
+        <h1>Rock Paper Scissors</h1>
+        <h5>
+            <ul>
+                <li>Play the game by clicking a button below</li>
+                <li>Once you click the CPU will randomly choose an option as well.</li>
+                <li>Results are shown on the box below.</li>
+                <li>First to 5 wins.</li>
+            </ul>
+        </h5>
         <section id="player-section">
             <div class="player-choices">
-                <div class="player-button">Rock</div>
-                <div class="player-button">Paper</div>
-                <div class="player-button">Scissors</div>
+                <button class="player-button" id="rock">Rock</button>
+                <button class="player-button" id="paper">Paper</button>
+                <button class="player-button" id="scissors">Scissors</button>
             </div>
-            <div>
-                <p>player score: 0</p>
-            </div>
-        </section>
-        <section id="computer-section">
-            <div class="computer-choices">
-                <div>
-                    Rock
-                </div>
-                <div>
-                    Paper
-                </div>
-                <div>
-                    Scissors
-                </div>
-            </div>
-            <div>
-                <p>computer score: 0</p>
+            <div id="scoreboard">
+                <p>You: <span id="player-score">0</span></p>
+                <p>CPU: <span id="cpu-score">0</span></p>
             </div>
         </section>
-    </main> -->
+        <section id="results-box">
+            <h3 id="results">Play by picking a choice above.</h3>
+        </section>
+        <button id="restart">Restart</button>
+    </main>
 
 <script src="app.js"></script>
 </body>

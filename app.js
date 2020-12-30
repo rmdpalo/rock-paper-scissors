@@ -1,64 +1,77 @@
-const options = ["Rock", "Paper", "Scissors"]
-
+const options = ["Rock", "Paper", "Scissors"];
+let computerChoice;
 let playerChoice;
-let computerChoice = options[randomizedChoice()];
+
+//declare variables needed
+let buttons = document.querySelectorAll('button.player-button');
+const results = document.querySelector('#results');
+let cpuScoreboard = document.querySelector('#cpu-score');
+let playerScoreboard = document.querySelector('#player-score');
+const restartButton = document.querySelector('#restart');
+
+
+let playerScore = 0;
+let computerScore = 0;
+//for each button we added an event listener, listening for a click.
+buttons.forEach((button) => {
+    //when clicked do this.
+    button.addEventListener('click', (e) => {
+        let playerChoice = button.id;
+        let computerChoice = options[randomizedChoice()];
+        console.log(playRound(playerChoice, computerChoice));
+
+        if (playerScore === 5 || computerScore === 5) {
+            announceWinner();
+            buttons.forEach((button) => {
+                button.disabled = true;
+            })
+        }
+    });
+    
+})
+
+restartButton.addEventListener('click', (e) => {
+    resetGame();
+});
+
+function announceWinner() {
+    playerScore > computerScore ? (results.textContent = "You won the game!") : (results.textContent = "You lost the game :(");
+}
+
+function keepPlayerScore(){
+    playerScoreboard.textContent = playerScore;
+}
+
+function keepCpuScore(){
+    cpuScoreboard.textContent = computerScore;
+}
 
 function randomizedChoice(){
     return Math.floor(Math.random() * options.length)
 }
 
 function playRound(playerChoice, computerChoice){
-    while(true) {
-        playerChoice = prompt("Rock, paper, or scissors?").toLowerCase();
-        if ((playerChoice === "rock") || (playerChoice === "paper") || (playerChoice === "scissors")) {
-            break;
-        }
-        alert("Please enter a valid choice.")
-    }
     computerChoice = computerChoice.toLowerCase();
 
     if(playerChoice === computerChoice){ //draw
-        return "Draw."
+        results.textContent = "Draw."
     } else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")){ //win conditions
         playerScore++
-        return `You win, ${playerChoice} beats ${computerChoice}.`
+        keepPlayerScore();
+        results.textContent = `You win, ${playerChoice} beats ${computerChoice}.`
     } else { //if not win conditions, it's lose.
         computerScore++
-        return `You lose, ${computerChoice} beats ${playerChoice}.`
+        keepCpuScore();
+        results.textContent = `You lose, ${computerChoice} beats ${playerChoice}.`
     }
 }
 
-let gameEnded = false;
-let playerScore = 0;
-let computerScore = 0;
-
-function resetGame (winner){
-    let reset = prompt("Play again? 'y' to restart.").toLowerCase();
-    if (reset === "y"){
-        playerScore = 0
-        computerScore = 0
-        gameEnded = false
-        game();
-    }
-    console.log(`Your score: ${playerScore}. Computer's Score: ${computerScore}.`)
-    console.log(`${winner} won the game!`)
+function resetGame(){
+    playerScore = 0
+    computerScore = 0
+    cpuScoreboard.textContent = computerScore;
+    playerScoreboard.textContent = playerScore;
+    buttons.forEach((button) => {
+        button.disabled = false;
+    })
 }
-
-function game(){
-    while(gameEnded === false){
-        console.log(`Your score: ${playerScore}. Computer's Score: ${computerScore}.`)
-        computerChoice = options[randomizedChoice()];
-        console.log(playRound(playerChoice, computerChoice));
-        if (playerScore === 5){
-            gameEnded = true;
-            resetGame("You");
-            return 
-        } else if (computerScore === 5) {
-            gameEnded = true;
-            resetGame("The computer");
-            return 
-        }
-    }
-}
-
-console.log(game());
