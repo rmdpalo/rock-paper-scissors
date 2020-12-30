@@ -27,8 +27,7 @@ section {
   padding: 10px;
   border-radius: var(--section-corners);
   background-color: #f7f3e3;
-  -webkit-box-shadow: 2px 9px 18px 5px rgba(0, 0, 0, 0.41);
-  box-shadow: 2px 9px 18px 5px rgba(0, 0, 0, 0.41);
+  box-shadow: 5px 4px 9px 1px rgba(0, 0, 0, 0.3);
 }
 
 button {
@@ -45,6 +44,7 @@ button {
 
 button:hover {
   color: rgb(241, 189, 55);
+  box-shadow: 5px 4px 9px 1px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
@@ -77,4 +77,8 @@ h5 {
   padding: 5px;
   font-size: 24px;
   font-weight: 800;
+}
+
+#restart {
+  box-shadow: 5px 4px 9px 1px rgba(0, 0, 0, 0.3);
 }
