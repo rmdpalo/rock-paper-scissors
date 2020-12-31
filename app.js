@@ -71,6 +71,7 @@ function resetGame(){
     computerScore = 0
     cpuScoreboard.textContent = computerScore;
     playerScoreboard.textContent = playerScore;
+    results.textContent = 'Play by picking a choice above.';
     buttons.forEach((button) => {
         button.disabled = false;
     })
