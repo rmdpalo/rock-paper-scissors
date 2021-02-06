@@ -8,3 +8,5 @@ Got a lot of practice in manipulating the DOM.
 - Event listeners
 - Events
 - query selectors
+
+[LIVE](https://rmdpalo.github.io/rock-paper-scissors/)
